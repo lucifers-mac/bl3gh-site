@@ -132,8 +132,21 @@ export default function FourJudgmentsPage() {
             ))}
           </div>
 
-          <button className="bg-[#f0f0f0] text-black px-10 py-4 text-sm tracking-wider uppercase font-medium hover:bg-white transition-colors">
-            Claim the Complete Judgment
+          <button
+            className="snipcart-add-item bg-[#f0f0f0] text-black px-10 py-4 text-sm tracking-wider uppercase font-medium hover:bg-white transition-colors"
+            data-item-id="complete-judgment-bundle"
+            data-item-price={BUNDLE_PRICE}
+            data-item-description="All four Judgments in one complete set. The Prophet, The Executioner, The Heretic, and The Witness."
+            data-item-image="/products/complete-judgment.jpg"
+            data-item-name="The Complete Judgment"
+            data-item-custom1-name="Size"
+            data-item-custom1-options="S|M|L|XL|XXL"
+            data-item-custom1-required="true"
+            data-item-custom2-name="Color"
+            data-item-custom2-options="White|Black"
+            data-item-custom2-required="true"
+          >
+            Claim the Complete Judgment — ${BUNDLE_PRICE}
           </button>
         </div>
       </section>

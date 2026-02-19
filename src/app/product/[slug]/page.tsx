@@ -104,9 +104,22 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </div>
           </div>
 
-          {/* Add to Cart */}
-          <button className="w-full bg-[#f0f0f0] text-black py-4 text-sm tracking-wider uppercase font-medium hover:bg-white transition-colors mb-4">
-            Add to Cart
+          {/* Add to Cart - Snipcart */}
+          <button
+            className="snipcart-add-item w-full bg-[#f0f0f0] text-black py-4 text-sm tracking-wider uppercase font-medium hover:bg-white transition-colors mb-4"
+            data-item-id={product.slug}
+            data-item-price={product.price}
+            data-item-description={product.description}
+            data-item-image={product.colorways[0].image}
+            data-item-name={product.name}
+            data-item-custom1-name="Size"
+            data-item-custom1-options={product.sizes.join("|")}
+            data-item-custom1-required="true"
+            data-item-custom2-name="Color"
+            data-item-custom2-options={product.colorways.map(c => c.name).join("|")}
+            data-item-custom2-required="true"
+          >
+            Add to Cart — ${product.price}
           </button>
 
           {product.collection === "the-four-judgments" && (

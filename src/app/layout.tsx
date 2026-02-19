@@ -44,6 +44,12 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
           rel="stylesheet"
         />
+        <link rel="preconnect" href="https://app.snipcart.com" />
+        <link rel="preconnect" href="https://cdn.snipcart.com" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.css"
+        />
       </head>
       <body className="antialiased noise-overlay">
         <Header />
@@ -51,6 +57,16 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        
+        {/* Snipcart */}
+        <div
+          hidden
+          id="snipcart"
+          data-api-key={process.env.NEXT_PUBLIC_SNIPCART_API_KEY}
+          data-config-modal-style="side"
+          data-config-add-product-behavior="none"
+        />
+        <script async src="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.js" />
       </body>
     </html>
   );
