@@ -65,6 +65,21 @@ export default function RootLayout({
           data-api-key={process.env.NEXT_PUBLIC_SNIPCART_API_KEY}
           data-config-modal-style="side"
           data-config-add-product-behavior="none"
+          data-currency="usd"
+        />
+        <script 
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.SnipcartSettings = {
+                publicApiKey: "${process.env.NEXT_PUBLIC_SNIPCART_API_KEY}",
+                loadStrategy: "on-user-interaction",
+                addProductBehavior: "none",
+                modalStyle: "side",
+                currency: "usd"
+              };
+              console.log("Snipcart API Key:", "${process.env.NEXT_PUBLIC_SNIPCART_API_KEY}");
+            `
+          }}
         />
         <script async src="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.js" />
       </body>
