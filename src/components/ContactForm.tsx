@@ -20,7 +20,7 @@ export function ContactForm() {
 
     try {
       // Use Formspree (free form handler)
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch('https://formspree.io/f/maqddjok', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
