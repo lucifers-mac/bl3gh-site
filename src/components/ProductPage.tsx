@@ -12,6 +12,7 @@ interface ProductPageProps {
 export function ProductPage({ product, siblings }: ProductPageProps) {
   const [selectedColor, setSelectedColor] = useState(product.colorways[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[2] || product.sizes[0]); // Default to L or first size
+  const [addedToCart, setAddedToCart] = useState(false);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-16 md:py-24">
@@ -100,7 +101,11 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
 
           {/* Add to Cart - Snipcart */}
           <button
-            className="snipcart-add-item w-full bg-[#f0f0f0] text-black py-4 text-sm tracking-wider uppercase font-medium hover:bg-white transition-colors mb-4"
+            className={`snipcart-add-item w-full py-4 text-sm tracking-wider uppercase font-medium transition-all duration-300 mb-4 ${
+              addedToCart 
+                ? "bg-green-600 text-white" 
+                : "bg-[#f0f0f0] text-black hover:bg-white"
+            }`}
             data-item-id={`${product.slug}-${selectedColor.name.toLowerCase()}-${selectedSize.toLowerCase()}`}
             data-item-price={product.price}
             data-item-description={`${product.description} - ${selectedColor.name}, Size ${selectedSize}`}
@@ -110,8 +115,12 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
             data-item-custom1-value={selectedSize}
             data-item-custom2-name="Color"
             data-item-custom2-value={selectedColor.name}
+            onClick={() => {
+              setAddedToCart(true);
+              setTimeout(() => setAddedToCart(false), 2000);
+            }}
           >
-            Add to Cart — ${product.price}
+            {addedToCart ? "✓ Added to Cart" : `Add to Cart — $${product.price}`}
           </button>
 
           {product.collection === "the-four-judgments" && (

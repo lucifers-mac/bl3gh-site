@@ -12,6 +12,7 @@ interface BundleSectionProps {
 export function BundleSection({ judgments, bundlePrice, bundleSavings }: BundleSectionProps) {
   const [selectedSize, setSelectedSize] = useState("L");
   const [selectedColor, setSelectedColor] = useState("White");
+  const [addedToCart, setAddedToCart] = useState(false);
 
   const sizes = ["S", "M", "L", "XL", "XXL"];
   const colors = ["White", "Black"];
@@ -87,7 +88,11 @@ export function BundleSection({ judgments, bundlePrice, bundleSavings }: BundleS
         </div>
 
         <button
-          className="snipcart-add-item bg-[#f0f0f0] text-black px-10 py-4 text-sm tracking-wider uppercase font-medium hover:bg-white transition-colors"
+          className={`snipcart-add-item px-10 py-4 text-sm tracking-wider uppercase font-medium transition-all duration-300 ${
+            addedToCart 
+              ? "bg-green-600 text-white" 
+              : "bg-[#f0f0f0] text-black hover:bg-white"
+          }`}
           data-item-id={`complete-judgment-bundle-${selectedColor.toLowerCase()}-${selectedSize.toLowerCase()}`}
           data-item-price={bundlePrice}
           data-item-description={`All four Judgments in one complete set. The Prophet, The Executioner, The Heretic, and The Witness. ${selectedColor}, Size ${selectedSize}`}
@@ -97,8 +102,12 @@ export function BundleSection({ judgments, bundlePrice, bundleSavings }: BundleS
           data-item-custom1-value={selectedSize}
           data-item-custom2-name="Color"
           data-item-custom2-value={selectedColor}
+          onClick={() => {
+            setAddedToCart(true);
+            setTimeout(() => setAddedToCart(false), 2000);
+          }}
         >
-          Claim the Complete Judgment — ${bundlePrice}
+          {addedToCart ? "✓ Added to Cart" : `Claim the Complete Judgment — $${bundlePrice}`}
         </button>
       </div>
     </section>

@@ -103,3 +103,12 @@ body {
   pointer-events: none;
   z-index: 50;
 }
+
+/* Snipcart Cart Count */
+.snipcart-items-count:empty {
+  display: none !important;
+}
+
+.snipcart-items-count:not(:empty) {
+  display: flex !important;
+}
