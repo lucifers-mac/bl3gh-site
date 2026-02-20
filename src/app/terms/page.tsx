@@ -126,8 +126,8 @@ export default function TermsPage() {
           <h2 className="text-sm tracking-wider text-[#f0f0f0] uppercase mb-3">Contact</h2>
           <p>
             Questions about these terms? Contact{" "}
-            <a href="mailto:support@bl3gh.co" className="text-[#f0f0f0] hover:underline">
-              support@bl3gh.co
+            <a href="mailto:orders@bl3gh.co" className="text-[#f0f0f0] hover:underline">
+              orders@bl3gh.co
             </a>.
           </p>
         </section>

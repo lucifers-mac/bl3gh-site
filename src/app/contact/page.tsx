@@ -13,6 +13,8 @@ export default function ContactPage() {
       </h1>
       <p className="text-sm text-[#707070] mb-12">
         Questions about an order, collaboration inquiries, or just want to talk heavy culture.
+        Reach us directly at{" "}
+        <a href="mailto:contact@bl3gh.co" className="text-[#f0f0f0] hover:underline">contact@bl3gh.co</a>.
       </p>
 
       <ContactForm />
