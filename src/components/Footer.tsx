@@ -30,7 +30,16 @@ export function Footer() {
                 About
               </Link>
               <Link href="/shipping" className="block text-sm text-[#b0b0b0] hover:text-[#f0f0f0] transition-colors">
-                Shipping Policy
+                Shipping
+              </Link>
+              <Link href="/returns" className="block text-sm text-[#b0b0b0] hover:text-[#f0f0f0] transition-colors">
+                Returns &amp; Refunds
+              </Link>
+              <Link href="/terms" className="block text-sm text-[#b0b0b0] hover:text-[#f0f0f0] transition-colors">
+                Terms &amp; Conditions
+              </Link>
+              <Link href="/privacy" className="block text-sm text-[#b0b0b0] hover:text-[#f0f0f0] transition-colors">
+                Privacy Policy
               </Link>
               <Link href="/contact" className="block text-sm text-[#b0b0b0] hover:text-[#f0f0f0] transition-colors">
                 Contact
@@ -48,7 +57,7 @@ export function Footer() {
               <a href="https://tiktok.com/@bl3gh.co" target="_blank" rel="noopener" className="block text-sm text-[#b0b0b0] hover:text-[#f0f0f0] transition-colors">
                 TikTok
               </a>
-              <a href="https://facebook.com/BL3GH.co" target="_blank" rel="noopener" className="block text-sm text-[#b0b0b0] hover:text-[#f0f0f0] transition-colors">
+              <a href="https://www.facebook.com/people/BL3GHco/61585376762346/" target="_blank" rel="noopener" className="block text-sm text-[#b0b0b0] hover:text-[#f0f0f0] transition-colors">
                 Facebook
               </a>
             </div>
