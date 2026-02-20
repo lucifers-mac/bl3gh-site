@@ -85,7 +85,7 @@ export default function Home() {
             className="inline-block border border-[#333] px-8 py-3 text-sm tracking-wider uppercase text-[#b0b0b0] hover:text-[#f0f0f0] hover:border-[#666] transition-all duration-300"
           >
             The Complete Judgment — ${BUNDLE_PRICE}
-            <span className="text-[#707070] ml-2 text-xs">(save ${BUNDLE_SAVINGS})</span>
+            <span className="text-green-400 ml-2 text-xs">(SAVE ${BUNDLE_SAVINGS})</span>
           </Link>
         </div>
       </section>
