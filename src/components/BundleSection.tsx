@@ -23,23 +23,21 @@ export function BundleSection({ judgments, bundlePrice, bundleSavings }: BundleS
   const colors = ["White", "Black"];
 
   const handleAddBundle = () => {
-    // Add all four judgments to cart
-    judgments.forEach((product) => {
-      const colorway = product.colorways.find((c) => c.name === selectedColor) || product.colorways[0];
-      
-      addItem({
-        slug: product.slug,
-        name: product.name,
-        price: product.price,
-        colorway: selectedColor,
-        size: selectedSize,
-        image: colorway.image,
-      });
+    // Add as a single bundle item at the discounted bundle price
+    const firstJudgment = judgments[0];
+    const colorway = firstJudgment.colorways.find((c) => c.name === selectedColor) || firstJudgment.colorways[0];
+
+    addItem({
+      slug: "complete-judgment-bundle",
+      name: "The Complete Judgment — All Four",
+      price: bundlePrice,
+      colorway: selectedColor,
+      size: selectedSize,
+      image: colorway.image,
     });
 
     setAddedToCart(true);
-    
-    // After a delay, go to cart
+
     setTimeout(() => {
       router.push("/cart");
     }, 1500);
