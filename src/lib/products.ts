@@ -162,7 +162,7 @@ export const products: Product[] = [
   },
 ];
 
-export const BUNDLE_PRICE = 140;
+export const BUNDLE_PRICE = 150;
 export const BUNDLE_SAVINGS = 43 * 4 - BUNDLE_PRICE;
 
 export function getProduct(slug: string): Product | undefined {
