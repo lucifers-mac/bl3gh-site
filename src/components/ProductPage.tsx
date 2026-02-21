@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/products";
 
@@ -11,8 +12,13 @@ interface ProductPageProps {
 
 export function ProductPage({ product, siblings }: ProductPageProps) {
   const [selectedColor, setSelectedColor] = useState(product.colorways[0]);
-  const [selectedSize, setSelectedSize] = useState(product.sizes[2] || product.sizes[0]); // Default to L or first size
+  const [selectedSize, setSelectedSize] = useState(product.sizes[2] || product.sizes[0]);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [showModel, setShowModel] = useState(false);
+
+  const currentImage = showModel && selectedColor.modelImage
+    ? selectedColor.modelImage
+    : selectedColor.image;
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-16 md:py-24">
@@ -20,14 +26,44 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
         {/* Product Image */}
         <div>
           <div className="aspect-square bg-[#0a0a0a] border border-[#1a1a1a] rounded-lg overflow-hidden relative sticky top-20">
-            <div className="w-full h-full flex items-center justify-center">
-              <span className="text-[#333] text-sm tracking-wider uppercase">{product.name}</span>
-            </div>
+            <Image
+              src={currentImage}
+              alt={`${product.name} - ${selectedColor.name}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
             {product.limited && (
               <div className="absolute top-4 left-4">
                 <span className="text-[10px] tracking-widest uppercase text-[#707070] bg-black/80 px-2 py-1 rounded">
                   Limited Run
                 </span>
+              </div>
+            )}
+            {/* Image toggle */}
+            {selectedColor.modelImage && (
+              <div className="absolute bottom-4 right-4 flex gap-2">
+                <button
+                  onClick={() => setShowModel(false)}
+                  className={`text-[10px] tracking-wider uppercase px-3 py-1.5 rounded transition-colors ${
+                    !showModel
+                      ? "bg-white/20 text-white backdrop-blur-sm"
+                      : "bg-black/50 text-[#707070] backdrop-blur-sm hover:text-white"
+                  }`}
+                >
+                  Product
+                </button>
+                <button
+                  onClick={() => setShowModel(true)}
+                  className={`text-[10px] tracking-wider uppercase px-3 py-1.5 rounded transition-colors ${
+                    showModel
+                      ? "bg-white/20 text-white backdrop-blur-sm"
+                      : "bg-black/50 text-[#707070] backdrop-blur-sm hover:text-white"
+                  }`}
+                >
+                  On Model
+                </button>
               </div>
             )}
           </div>
@@ -65,8 +101,8 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
                     key={color.name}
                     onClick={() => setSelectedColor(color)}
                     className={`w-10 h-10 rounded-full border-2 transition-colors ${
-                      selectedColor.name === color.name 
-                        ? "border-[#f0f0f0]" 
+                      selectedColor.name === color.name
+                        ? "border-[#f0f0f0]"
                         : "border-[#333] hover:border-[#666]"
                     }`}
                     style={{ backgroundColor: color.hex }}
@@ -102,8 +138,8 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
           {/* Add to Cart - Snipcart */}
           <button
             className={`snipcart-add-item w-full py-4 text-sm tracking-wider uppercase font-medium transition-all duration-300 mb-4 ${
-              addedToCart 
-                ? "bg-green-600 text-white" 
+              addedToCart
+                ? "bg-green-600 text-white"
                 : "bg-[#f0f0f0] text-black hover:bg-white"
             }`}
             data-item-id={`${product.slug}-${selectedColor.name.toLowerCase()}-${selectedSize.toLowerCase()}`}
@@ -168,8 +204,14 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
                     href={`/product/${s.slug}`}
                     className="group"
                   >
-                    <div className="aspect-square bg-[#0a0a0a] border border-[#1a1a1a] rounded overflow-hidden flex items-center justify-center mb-2">
-                      <span className="text-[10px] text-[#333] tracking-wider uppercase">{s.name.replace("The ", "")}</span>
+                    <div className="aspect-square bg-[#0a0a0a] border border-[#1a1a1a] rounded overflow-hidden relative mb-2">
+                      <Image
+                        src={s.colorways[0].image}
+                        alt={s.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 33vw, 15vw"
+                      />
                     </div>
                     <p className="text-xs text-[#b0b0b0] group-hover:text-[#f0f0f0] transition-colors">{s.name}</p>
                     <p className="text-xs text-[#707070]">${s.price}</p>

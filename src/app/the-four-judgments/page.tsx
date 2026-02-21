@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { getJudgments, BUNDLE_PRICE, BUNDLE_SAVINGS } from "@/lib/products";
 import { EmailForm } from "@/components/EmailForm";
 import { BundleSection } from "@/components/BundleSection";
@@ -39,9 +40,13 @@ export default function FourJudgmentsPage() {
               {/* Image */}
               <div className={`${i % 2 === 1 ? "md:order-2" : ""}`}>
                 <div className="aspect-square bg-[#0a0a0a] border border-[#1a1a1a] rounded-lg overflow-hidden relative">
-                  <div className="w-full h-full flex items-center justify-center">
-                    <span className="text-[#333] text-sm tracking-wider uppercase">{product.name}</span>
-                  </div>
+                  <Image
+                    src={product.colorways[0].modelImage || product.colorways[0].image}
+                    alt={product.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                   <div className="absolute top-4 left-4">
                     <span className="text-[10px] tracking-widest uppercase text-[#707070] bg-black/80 px-2 py-1 rounded">
                       Limited Run

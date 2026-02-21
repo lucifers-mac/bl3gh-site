@@ -7,7 +7,7 @@ export interface Product {
   price: number;
   description: string;
   lore: string;
-  colorways: { name: string; hex: string; image: string }[];
+  colorways: { name: string; hex: string; image: string; modelImage?: string }[];
   sizes: string[];
   limited: boolean;
   inStock: boolean;
@@ -25,8 +25,8 @@ export const products: Product[] = [
     description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run — not restocked.",
     lore: "He does not preach. He sees what others refuse to. He carries foresight as burden, not authority. The Prophet initiates the Judgment cycle.",
     colorways: [
-      { name: "White", hex: "#f0f0f0", image: "/products/prophet-white.jpg" },
-      { name: "Black", hex: "#111111", image: "/products/prophet-black.jpg" },
+      { name: "White", hex: "#f0f0f0", image: "/products/prophet-white.png", modelImage: "/products/prophet-white-model.png" },
+      { name: "Black", hex: "#111111", image: "/products/prophet-black.png", modelImage: "/products/prophet-black-model.png" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
@@ -42,8 +42,8 @@ export const products: Product[] = [
     description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run — not restocked.",
     lore: "He is not rage. He is inevitability. The moment talk ends and outcome begins. This piece anchors the capsule in certainty.",
     colorways: [
-      { name: "White", hex: "#f0f0f0", image: "/products/executioner-white.jpg" },
-      { name: "Black", hex: "#111111", image: "/products/executioner-black.jpg" },
+      { name: "White", hex: "#f0f0f0", image: "/products/executioner-white.png", modelImage: "/products/executioner-white-model.png" },
+      { name: "Black", hex: "#111111", image: "/products/executioner-black.png", modelImage: "/products/executioner-black-model.png" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
@@ -59,8 +59,8 @@ export const products: Product[] = [
     description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run — not restocked.",
     lore: "He refuses imposed truth. He dismantles belief systems and exposes hypocrisy. Where the Prophet warns and the Executioner enforces, the Heretic destabilizes.",
     colorways: [
-      { name: "White", hex: "#f0f0f0", image: "/products/heretic-white.jpg" },
-      { name: "Black", hex: "#111111", image: "/products/heretic-black.jpg" },
+      { name: "White", hex: "#f0f0f0", image: "/products/heretic-white.png", modelImage: "/products/heretic-white-model.png" },
+      { name: "Black", hex: "#111111", image: "/products/heretic-black.png", modelImage: "/products/heretic-black-model.png" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
@@ -76,8 +76,8 @@ export const products: Product[] = [
     description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run — not restocked.",
     lore: "He judges last. He does not act. He records. He is silent presence, unblinking and enduring. Nothing dramatic — because everything has already happened. The Witness completes the cycle.",
     colorways: [
-      { name: "White", hex: "#f0f0f0", image: "/products/witness-white.jpg" },
-      { name: "Black", hex: "#111111", image: "/products/witness-black.jpg" },
+      { name: "White", hex: "#f0f0f0", image: "/products/witness-white.png", modelImage: "/products/witness-white-model.png" },
+      { name: "Black", hex: "#111111", image: "/products/witness-black.png", modelImage: "/products/witness-black-model.png" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,

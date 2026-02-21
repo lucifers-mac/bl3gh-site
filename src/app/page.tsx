@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getJudgments, BUNDLE_PRICE, BUNDLE_SAVINGS } from "@/lib/products";
 import { EmailForm } from "@/components/EmailForm";
 
@@ -58,10 +59,13 @@ export default function Home() {
               className="group"
             >
               <div className="aspect-square bg-[#0a0a0a] border border-[#1a1a1a] rounded overflow-hidden mb-3 relative">
-                {/* Placeholder - replace with actual product images */}
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-[#333] text-xs tracking-wider uppercase">{product.name}</span>
-                </div>
+                <Image
+                  src={product.colorways[0].image}
+                  alt={product.name}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                />
                 {product.limited && (
                   <div className="absolute top-3 left-3">
                     <span className="text-[9px] tracking-widest uppercase text-[#707070] bg-black/80 px-2 py-1 rounded">

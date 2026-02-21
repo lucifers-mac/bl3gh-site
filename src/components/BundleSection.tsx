@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import type { Product } from "@/lib/products";
 
 interface BundleSectionProps {
@@ -36,11 +37,20 @@ export function BundleSection({ judgments, bundlePrice, bundleSavings }: BundleS
 
         {/* Bundle Grid */}
         <div className="grid grid-cols-4 gap-3 mb-8">
-          {judgments.map((p) => (
-            <div key={p.slug} className="aspect-square bg-[#0a0a0a] border border-[#1a1a1a] rounded flex items-center justify-center">
-              <span className="text-[10px] text-[#707070] tracking-wider uppercase">{p.name.replace("The ", "")}</span>
-            </div>
-          ))}
+          {judgments.map((p) => {
+            const colorway = p.colorways.find((c) => c.name === selectedColor) || p.colorways[0];
+            return (
+              <div key={p.slug} className="aspect-square bg-[#0a0a0a] border border-[#1a1a1a] rounded overflow-hidden relative">
+                <Image
+                  src={colorway.image}
+                  alt={p.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 25vw, 15vw"
+                />
+              </div>
+            );
+          })}
         </div>
 
         {/* Size Selection */}
