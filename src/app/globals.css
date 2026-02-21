@@ -112,3 +112,120 @@ body {
 .snipcart-items-count:not(:empty) {
   display: flex !important;
 }
+
+/* Snipcart Dark Theme */
+.snipcart-modal__container,
+.snipcart-cart__content,
+.snipcart-layout {
+  background: #0a0a0a !important;
+}
+
+.snipcart-cart-header,
+.snipcart-cart-header__title,
+.snipcart-item-line__title,
+.snipcart-item-line__subtitle,
+.snipcart-cart-summary-fees__title,
+.snipcart-cart-summary-fees__amount,
+.snipcart-cart-summary__content,
+.snipcart__font--secondary,
+.snipcart__font--subtitle,
+.snipcart-billing-completed__step-title,
+.snipcart-order__title,
+.snipcart-payment__header,
+.snipcart-payment__label,
+.snipcart-billing__label,
+.snipcart-form__label,
+.snipcart-typeahead__label,
+.snipcart h1,
+.snipcart h2,
+.snipcart h3,
+.snipcart p,
+.snipcart label,
+.snipcart span,
+.snipcart div {
+  color: #f0f0f0 !important;
+}
+
+.snipcart-cart-summary-side {
+  background: #111 !important;
+  border-color: #1a1a1a !important;
+}
+
+.snipcart-item-line {
+  border-color: #1a1a1a !important;
+}
+
+.snipcart-form__input,
+.snipcart-typeahead__input,
+.snipcart-input,
+.snipcart-form__select {
+  background: #111 !important;
+  border-color: #333 !important;
+  color: #f0f0f0 !important;
+}
+
+.snipcart-form__input:focus,
+.snipcart-typeahead__input:focus {
+  border-color: #555 !important;
+}
+
+.snipcart-cart-button--highlight,
+.snipcart-button-primary {
+  background: #f0f0f0 !important;
+  color: #000 !important;
+}
+
+.snipcart-cart-button--highlight:hover,
+.snipcart-button-primary:hover {
+  background: #fff !important;
+}
+
+.snipcart-button-secondary {
+  background: transparent !important;
+  border-color: #333 !important;
+  color: #b0b0b0 !important;
+}
+
+.snipcart-button-link,
+.snipcart-cart-header__close-button,
+.snipcart-modal__close {
+  color: #b0b0b0 !important;
+}
+
+.snipcart-checkout-step__icon--active {
+  background: #f0f0f0 !important;
+  color: #000 !important;
+}
+
+.snipcart-checkout-step {
+  border-color: #1a1a1a !important;
+}
+
+.snipcart-discount-box__form {
+  background: #111 !important;
+}
+
+.snipcart-flash-message--error {
+  background: #300 !important;
+}
+
+.snipcart-flash-message--success {
+  background: #030 !important;
+}
+
+/* Override any remaining white backgrounds */
+.snipcart [style*="background-color: rgb(255, 255, 255)"],
+.snipcart [style*="background: white"],
+.snipcart [style*="background: rgb(255, 255, 255)"] {
+  background-color: #0a0a0a !important;
+}
+
+.snipcart__box {
+  background: #111 !important;
+  border-color: #1a1a1a !important;
+}
+
+.snipcart__box--badge {
+  background: #f0f0f0 !important;
+  color: #000 !important;
+}
