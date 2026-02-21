@@ -2,10 +2,31 @@
 
 import { useState } from "react";
 
-export function EmailForm({ placeholder = "email@address.com", buttonText = "Join", className = "" }: {
+async function subscribeEmail(email: string, source: string) {
+  const res = await fetch("/api/subscribe", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, source }),
+  });
+
+  if (!res.ok) {
+    const data = await res.json();
+    throw new Error(data.error || "Failed to subscribe");
+  }
+
+  return true;
+}
+
+export function EmailForm({
+  placeholder = "email@address.com",
+  buttonText = "Join",
+  className = "",
+  source = "Email Signup",
+}: {
   placeholder?: string;
   buttonText?: string;
   className?: string;
+  source?: string;
 }) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -17,27 +38,13 @@ export function EmailForm({ placeholder = "email@address.com", buttonText = "Joi
     setStatus("submitting");
 
     try {
-      // Use Mailchimp signup
-      const formData = new FormData();
-      formData.append('EMAIL', email);
-      formData.append('SOURCE', placeholder.includes('Chapter') ? 'Book of BL3GH' : 'Email Signup');
-      
-      await fetch('https://bl3gh.us22.list-manage.com/subscribe/post?u=a7f368893ed0b3e4765d671e9&id=989f616f57&f_id=00b4c2e1f0', {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors', // Mailchimp doesn't support CORS
-      });
-
-      // With no-cors mode, we can't read the response, so assume success
+      await subscribeEmail(email, source);
       setStatus("success");
       setEmail("");
     } catch (error) {
-      // With no-cors, errors are rare, but just in case
-      setStatus("success"); // Show success anyway since we can't detect real errors
-      setEmail("");
+      setStatus("error");
     }
 
-    // Reset status after 3 seconds
     setTimeout(() => setStatus("idle"), 3000);
   }
 
@@ -45,6 +52,14 @@ export function EmailForm({ placeholder = "email@address.com", buttonText = "Joi
     return (
       <div className={`text-center py-4 ${className}`}>
         <p className="text-sm text-green-400">Added to the list ✓</p>
+      </div>
+    );
+  }
+
+  if (status === "error") {
+    return (
+      <div className={`text-center py-4 ${className}`}>
+        <p className="text-sm text-red-400">Something went wrong. Try again.</p>
       </div>
     );
   }
@@ -82,21 +97,12 @@ export function SmallEmailForm() {
     setStatus("submitting");
 
     try {
-      const formData = new FormData();
-      formData.append('EMAIL', email);
-      formData.append('SOURCE', 'Footer Signup');
-      
-      await fetch('https://bl3gh.us22.list-manage.com/subscribe/post?u=a7f368893ed0b3e4765d671e9&id=989f616f57&f_id=00b4c2e1f0', {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors',
-      });
-
+      await subscribeEmail(email, "Footer Signup");
       setStatus("success");
       setEmail("");
       setTimeout(() => setStatus("idle"), 2000);
     } catch (error) {
-      setStatus("idle"); // Reset on error
+      setStatus("idle");
     }
   }
 
