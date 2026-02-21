@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import type { Product } from "@/lib/products";
+import { useCart } from "@/contexts/CartContext";
 
 interface ProductPageProps {
   product: Product;
@@ -11,6 +13,8 @@ interface ProductPageProps {
 }
 
 export function ProductPage({ product, siblings }: ProductPageProps) {
+  const router = useRouter();
+  const { addItem } = useCart();
   const [selectedColor, setSelectedColor] = useState(product.colorways[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[2] || product.sizes[0]);
   const [addedToCart, setAddedToCart] = useState(false);
@@ -19,6 +23,20 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
   const currentImage = showModel && selectedColor.modelImage
     ? selectedColor.modelImage
     : selectedColor.image;
+
+  const handleAddToCart = () => {
+    addItem({
+      slug: product.slug,
+      name: product.name,
+      price: product.price,
+      colorway: selectedColor.name,
+      size: selectedSize,
+      image: selectedColor.image,
+    });
+
+    setAddedToCart(true);
+    setTimeout(() => setAddedToCart(false), 2000);
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-16 md:py-24">
@@ -87,7 +105,8 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
             </p>
           )}
 
-          <div className="text-2xl text-[#f0f0f0] mb-8">${product.price}</div>
+          <div className="text-2xl text-[#f0f0f0] mb-2">${product.price}</div>
+          <p className="text-xs text-green-500 mb-6">FREE US SHIPPING</p>
 
           {/* Colorways */}
           {product.colorways.length > 1 && (
@@ -135,29 +154,27 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
             </div>
           </div>
 
-          {/* Add to Cart - Snipcart */}
-          <button
-            className={`snipcart-add-item w-full py-4 text-sm tracking-wider uppercase font-medium transition-all duration-300 mb-4 ${
-              addedToCart
-                ? "bg-green-600 text-white"
-                : "bg-[#f0f0f0] text-black hover:bg-white"
-            }`}
-            data-item-id={`${product.slug}-${selectedColor.name.toLowerCase()}-${selectedSize.toLowerCase()}`}
-            data-item-price={product.price}
-            data-item-description={`${product.description} - ${selectedColor.name}, Size ${selectedSize}`}
-            data-item-image={selectedColor.image}
-            data-item-name={`${product.name} - ${selectedColor.name}`}
-            data-item-custom1-name="Size"
-            data-item-custom1-value={selectedSize}
-            data-item-custom2-name="Color"
-            data-item-custom2-value={selectedColor.name}
-            onClick={() => {
-              setAddedToCart(true);
-              setTimeout(() => setAddedToCart(false), 2000);
-            }}
-          >
-            {addedToCart ? "✓ Added to Cart" : `Add to Cart — $${product.price}`}
-          </button>
+          {/* Add to Cart */}
+          <div className="flex gap-3 mb-4">
+            <button
+              onClick={handleAddToCart}
+              className={`flex-grow py-4 text-sm tracking-wider uppercase font-medium transition-all duration-300 ${
+                addedToCart
+                  ? "bg-green-600 text-white"
+                  : "bg-[#f0f0f0] text-black hover:bg-white"
+              }`}
+            >
+              {addedToCart ? "✓ Added to Cart" : `Add to Cart — $${product.price}`}
+            </button>
+            {addedToCart && (
+              <button
+                onClick={() => router.push("/cart")}
+                className="border border-[#333] px-6 text-sm tracking-wider uppercase text-[#b0b0b0] hover:text-[#f0f0f0] hover:border-[#666] transition-colors"
+              >
+                View Cart
+              </button>
+            )}
+          </div>
 
           {product.collection === "the-four-judgments" && (
             <Link
@@ -186,7 +203,11 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-[#707070]">·</span>
-                Ships within 3–5 business days
+                Free US shipping
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-[#707070]">·</span>
+                Ships within 5-10 business days
               </li>
             </ul>
           </div>

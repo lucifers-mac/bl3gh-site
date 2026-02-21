@@ -54,9 +54,18 @@ export default function AboutPage() {
 
         <div className="h-px bg-[#1a1a1a]" />
 
-        {/* Production photo placeholder */}
-        <div className="aspect-video bg-[#0a0a0a] border border-[#1a1a1a] rounded-lg flex items-center justify-center">
-          <span className="text-[#333] text-xs tracking-wider uppercase">Production Setup Photo</span>
+        {/* Production photos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <img
+            src="/production-1.jpg"
+            alt="T-shirt on heat press platen with alignment ruler for centering a design"
+            className="w-full aspect-video object-cover rounded-lg border border-[#1a1a1a]"
+          />
+          <img
+            src="/production-2.jpg"
+            alt="Clamshell heat press in the BL3GH production workspace"
+            className="w-full aspect-video object-cover rounded-lg border border-[#1a1a1a]"
+          />
         </div>
 
         <div className="h-px bg-[#1a1a1a]" />
@@ -78,6 +87,9 @@ export default function AboutPage() {
           </a>
           <a href="https://tiktok.com/@bl3gh.co" target="_blank" rel="noopener" className="text-sm text-[#707070] hover:text-[#b0b0b0] transition-colors">
             TikTok →
+          </a>
+          <a href="https://www.facebook.com/people/BL3GHco/61585376762346/" target="_blank" rel="noopener" className="text-sm text-[#707070] hover:text-[#b0b0b0] transition-colors">
+            Facebook →
           </a>
         </div>
       </div>

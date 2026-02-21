@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import type { Product } from "@/lib/products";
+import { useCart } from "@/contexts/CartContext";
 
 interface BundleSectionProps {
   judgments: Product[];
@@ -11,12 +13,37 @@ interface BundleSectionProps {
 }
 
 export function BundleSection({ judgments, bundlePrice, bundleSavings }: BundleSectionProps) {
+  const router = useRouter();
+  const { addItem } = useCart();
   const [selectedSize, setSelectedSize] = useState("L");
   const [selectedColor, setSelectedColor] = useState("White");
   const [addedToCart, setAddedToCart] = useState(false);
 
-  const sizes = ["S", "M", "L", "XL", "XXL"];
+  const sizes = ["S", "M", "L", "XL", "2XL"];
   const colors = ["White", "Black"];
+
+  const handleAddBundle = () => {
+    // Add all four judgments to cart
+    judgments.forEach((product) => {
+      const colorway = product.colorways.find((c) => c.name === selectedColor) || product.colorways[0];
+      
+      addItem({
+        slug: product.slug,
+        name: product.name,
+        price: product.price,
+        colorway: selectedColor,
+        size: selectedSize,
+        image: colorway.image,
+      });
+    });
+
+    setAddedToCart(true);
+    
+    // After a delay, go to cart
+    setTimeout(() => {
+      router.push("/cart");
+    }, 1500);
+  };
 
   return (
     <section id="bundle" className="border-t border-[#1a1a1a] py-24 bg-[#050505]">
@@ -27,13 +54,14 @@ export function BundleSection({ judgments, bundlePrice, bundleSavings }: BundleS
         <p className="text-sm text-[#b0b0b0] mb-3">
           All four. One cycle. One price.
         </p>
-        <div className="flex items-center justify-center gap-4 mb-8">
+        <div className="flex items-center justify-center gap-4 mb-2">
           <span className="text-3xl text-[#f0f0f0] font-light">${bundlePrice}</span>
-          <span className="text-sm text-[#707070] line-through">${38 * 4}</span>
+          <span className="text-sm text-[#707070] line-through">${43 * 4}</span>
           <span className="text-xs bg-green-900/30 text-green-400 px-2 py-1 rounded">
             Save ${bundleSavings}
           </span>
         </div>
+        <p className="text-xs text-green-500 mb-8">FREE US SHIPPING</p>
 
         {/* Bundle Grid */}
         <div className="grid grid-cols-4 gap-3 mb-8">
@@ -98,26 +126,15 @@ export function BundleSection({ judgments, bundlePrice, bundleSavings }: BundleS
         </div>
 
         <button
-          className={`snipcart-add-item px-10 py-4 text-sm tracking-wider uppercase font-medium transition-all duration-300 ${
+          onClick={handleAddBundle}
+          disabled={addedToCart}
+          className={`px-10 py-4 text-sm tracking-wider uppercase font-medium transition-all duration-300 disabled:opacity-70 ${
             addedToCart 
               ? "bg-green-600 text-white" 
               : "bg-[#f0f0f0] text-black hover:bg-white"
           }`}
-          data-item-id={`complete-judgment-bundle-${selectedColor.toLowerCase()}-${selectedSize.toLowerCase()}`}
-          data-item-price={bundlePrice}
-          data-item-description={`All four Judgments in one complete set. The Prophet, The Executioner, The Heretic, and The Witness. ${selectedColor}, Size ${selectedSize}`}
-          data-item-image="/products/complete-judgment.jpg"
-          data-item-name={`The Complete Judgment - ${selectedColor}`}
-          data-item-custom1-name="Size"
-          data-item-custom1-value={selectedSize}
-          data-item-custom2-name="Color"
-          data-item-custom2-value={selectedColor}
-          onClick={() => {
-            setAddedToCart(true);
-            setTimeout(() => setAddedToCart(false), 2000);
-          }}
         >
-          {addedToCart ? "✓ Added to Cart" : `Claim the Complete Judgment — $${bundlePrice}`}
+          {addedToCart ? "✓ Added — Going to Cart..." : `Claim the Complete Judgment — $${bundlePrice}`}
         </button>
       </div>
     </section>
