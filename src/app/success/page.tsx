@@ -1,24 +1,40 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Order Confirmed",
-};
+import Link from "next/link";
+import Script from "next/script";
+import { useEffect } from "react";
 
 export default function SuccessPage() {
+  useEffect(() => {
+    // Track purchase conversion in Meta Pixel
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "Purchase");
+    }
+
+    // Track in GA4 via dataLayer
+    if (typeof window !== "undefined" && (window as any).dataLayer) {
+      (window as any).dataLayer.push({
+        event: "purchase",
+        ecommerce: {
+          transaction_id: new URLSearchParams(window.location.search).get("session_id") || "unknown",
+        },
+      });
+    }
+  }, []);
+
   return (
     <div className="max-w-2xl mx-auto px-6 py-16 md:py-24 text-center">
       <div className="mb-8">
-        <div className="inline-block w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mb-6">
+        <div className="inline-flex w-16 h-16 rounded-full bg-green-500/10 items-center justify-center mb-6">
           <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        
+
         <h1 className="bl3gh-mark text-4xl tracking-wider text-[#f0f0f0] mb-4">
           Order Confirmed
         </h1>
-        
+
         <p className="text-[#b0b0b0] text-lg mb-2">
           You'll receive a confirmation email shortly.
         </p>
@@ -31,7 +47,7 @@ export default function SuccessPage() {
         <p className="text-[#505050] text-sm mb-6">
           Questions? Email <a href="mailto:orders@bl3gh.co" className="text-[#b0b0b0] hover:text-[#f0f0f0] transition-colors">orders@bl3gh.co</a>
         </p>
-        
+
         <div className="flex items-center justify-center gap-4">
           <Link
             href="/"
