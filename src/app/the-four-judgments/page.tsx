@@ -131,7 +131,7 @@ export default function FourJudgmentsPage() {
             Twelve chapters of voluntary suffering. 
             The prelude is being written.
           </p>
-          <EmailForm placeholder="email for Chapter I" buttonText="Notify" className="max-w-sm mx-auto" />
+          <EmailForm placeholder="email for Chapter I" buttonText="Notify" className="max-w-sm mx-auto" segment="lore" source="Book of BL3GH Teaser" />
         </div>
       </section>
     </div>

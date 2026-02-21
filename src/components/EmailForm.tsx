@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 
-async function subscribeEmail(email: string, source: string) {
+async function subscribeEmail(email: string, source: string, segment: string = "drops") {
   const res = await fetch("/api/subscribe", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, source }),
+    body: JSON.stringify({ email, source, segment }),
   });
 
   if (!res.ok) {
@@ -22,11 +22,13 @@ export function EmailForm({
   buttonText = "Join",
   className = "",
   source = "Email Signup",
+  segment = "drops",
 }: {
   placeholder?: string;
   buttonText?: string;
   className?: string;
   source?: string;
+  segment?: string;
 }) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -38,7 +40,7 @@ export function EmailForm({
     setStatus("submitting");
 
     try {
-      await subscribeEmail(email, source);
+      await subscribeEmail(email, source, segment);
       setStatus("success");
       setEmail("");
     } catch (error) {

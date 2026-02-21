@@ -7,7 +7,7 @@ const KLAVIYO_REVISION = "2024-10-15";
 
 export async function POST(req: NextRequest) {
   try {
-    const { email } = await req.json();
+    const { email, segment, source } = await req.json();
 
     if (!email || !email.includes("@")) {
       return NextResponse.json({ error: "Invalid email" }, { status: 400 });
@@ -19,13 +19,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 
-    const listId = process.env.KLAVIYO_DROP_ALERTS_LIST_ID;
+    // Route to correct list based on segment
+    const listId =
+      segment === "lore"
+        ? process.env.KLAVIYO_LORE_UPDATES_LIST_ID
+        : process.env.KLAVIYO_DROP_ALERTS_LIST_ID;
+
     if (!listId) {
-      console.error("KLAVIYO_DROP_ALERTS_LIST_ID not set");
+      console.error(`Klaviyo list ID not set for segment: ${segment || "drops"}`);
       return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 
-    // Subscribe profile to the Drop Alerts list
+    // Subscribe profile to the list
     const res = await fetch(
       `${KLAVIYO_API_URL}/lists/${listId}/relationships/profiles/`,
       {
@@ -42,7 +47,8 @@ export async function POST(req: NextRequest) {
               attributes: {
                 email,
                 properties: {
-                  source: "bl3gh.co",
+                  source: source || "bl3gh.co",
+                  segment: segment || "drops",
                   signed_up_at: new Date().toISOString(),
                 },
               },
@@ -55,7 +61,10 @@ export async function POST(req: NextRequest) {
     if (!res.ok && res.status !== 409) {
       const err = await res.text();
       console.error("Klaviyo error:", err);
-      return NextResponse.json({ error: "Failed to subscribe" }, { status: 500 });
+      return NextResponse.json(
+        { error: "Failed to subscribe" },
+        { status: 500 }
+      );
     }
 
     return NextResponse.json({ success: true });

@@ -113,7 +113,7 @@ export default function Home() {
         <p className="text-sm text-[#b0b0b0] mb-8">
           Get notified before drops go live. No spam. Only judgment.
         </p>
-        <EmailForm className="max-w-md mx-auto" />
+        <EmailForm className="max-w-md mx-auto" segment="drops" source="Homepage" />
       </section>
     </div>
   );
