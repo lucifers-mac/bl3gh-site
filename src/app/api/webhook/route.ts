@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import Stripe from "stripe";
+
+export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
   const sig = req.headers.get("stripe-signature")!;
 
+  const stripe = getStripe();
   let event: Stripe.Event;
 
   try {

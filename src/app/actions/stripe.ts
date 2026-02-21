@@ -1,6 +1,6 @@
 "use server";
 
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 
 export interface CheckoutItem {
   slug: string;
@@ -33,6 +33,8 @@ export async function createCheckoutSession(items: CheckoutItem[]) {
     },
     quantity: item.quantity,
   }));
+
+  const stripe = getStripe();
 
   const session = await stripe.checkout.sessions.create({
     ui_mode: "embedded",
