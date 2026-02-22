@@ -71,7 +71,7 @@ export function BundleSection({ judgments, bundlePrice, bundleSavings }: BundleS
                   src={colorway.image}
                   alt={p.name}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   sizes="(max-width: 768px) 25vw, 15vw"
                 />
               </div>

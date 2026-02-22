@@ -48,7 +48,7 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
               src={currentImage}
               alt={`${product.name} - ${selectedColor.name}`}
               fill
-              className="object-cover"
+              className="object-contain"
               sizes="(max-width: 768px) 100vw, 50vw"
               priority
             />
@@ -230,7 +230,7 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
                         src={s.colorways[0].image}
                         alt={s.name}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         sizes="(max-width: 768px) 33vw, 15vw"
                       />
                     </div>

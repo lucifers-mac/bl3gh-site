@@ -44,7 +44,7 @@ export default function FourJudgmentsPage() {
                     src={product.colorways[0].modelImage || product.colorways[0].image}
                     alt={product.name}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute top-4 left-4">

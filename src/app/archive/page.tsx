@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { getArchive } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -29,11 +30,20 @@ export default function ArchivePage() {
             className="group"
           >
             <div className="aspect-square bg-[#0a0a0a] border border-[#1a1a1a] rounded-lg overflow-hidden mb-3 relative group-hover:border-[#333] transition-colors">
-              <div className="w-full h-full flex items-center justify-center">
-                <span className="text-[#333] text-xs tracking-wider uppercase group-hover:text-[#707070] transition-colors">
-                  {product.name}
-                </span>
-              </div>
+              <Image
+                src={product.colorways[0].image}
+                alt={product.name}
+                fill
+                className="object-contain group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+              {product.limited && (
+                <div className="absolute top-3 left-3">
+                  <span className="text-[9px] tracking-widest uppercase text-[#707070] bg-black/80 px-2 py-1 rounded">
+                    Limited
+                  </span>
+                </div>
+              )}
             </div>
             <h3 className="text-sm text-[#f0f0f0] group-hover:text-white transition-colors">
               {product.name}
