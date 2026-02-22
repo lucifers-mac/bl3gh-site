@@ -94,7 +94,7 @@ export const products: Product[] = [
     description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
     lore: "",
     colorways: [
-      { name: "Black", hex: "#111111", image: "/products/occult-ascension.jpg" },
+      { name: "Black", hex: "#111111", image: "/products/archive-placeholder.webp" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
@@ -109,7 +109,7 @@ export const products: Product[] = [
     description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
     lore: "",
     colorways: [
-      { name: "Black", hex: "#111111", image: "/products/favorite-ex.jpg" },
+      { name: "Black", hex: "#111111", image: "/products/archive-placeholder.webp" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
@@ -124,7 +124,7 @@ export const products: Product[] = [
     description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
     lore: "",
     colorways: [
-      { name: "Black", hex: "#111111", image: "/products/not-today-jesus.jpg" },
+      { name: "Black", hex: "#111111", image: "/products/archive-placeholder.webp" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
@@ -139,7 +139,7 @@ export const products: Product[] = [
     description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
     lore: "",
     colorways: [
-      { name: "Black", hex: "#111111", image: "/products/sandpit-turtle.jpg" },
+      { name: "Black", hex: "#111111", image: "/products/archive-placeholder.webp" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
@@ -154,7 +154,7 @@ export const products: Product[] = [
     description: "Printed in-house at BL3GH.CO. Heavyweight fleece. Limited run. Free US shipping.",
     lore: "",
     colorways: [
-      { name: "Black", hex: "#111111", image: "/products/hardcore-maxx.jpg" },
+      { name: "Black", hex: "#111111", image: "/products/archive-placeholder.webp" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
