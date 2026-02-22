@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getJudgments, BUNDLE_PRICE, BUNDLE_SAVINGS } from "@/lib/products";
-import { EmailForm } from "@/components/EmailForm";
+import { EmailCapture } from "@/components/EmailCapture";
 
 export default function Home() {
   const judgments = getJudgments();
@@ -108,13 +108,7 @@ export default function Home() {
       </section>
 
       {/* EMAIL CAPTURE */}
-      <section className="max-w-xl mx-auto px-6 py-24 text-center">
-        <h2 className="text-xs tracking-[0.3em] text-[#707070] uppercase mb-4">Stay in the cycle</h2>
-        <p className="text-sm text-[#b0b0b0] mb-8">
-          Get notified before drops go live. No spam. Only judgment.
-        </p>
-        <EmailForm className="max-w-md mx-auto" segment="drops" source="Homepage" />
-      </section>
+      <EmailCapture />
     </div>
   );
 }
