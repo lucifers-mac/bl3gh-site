@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
       const err = await res.text();
       console.error("Klaviyo error status:", res.status, "body:", err);
       return NextResponse.json(
-        { error: "Failed to subscribe", detail: err, status: res.status },
+        { error: "Failed to subscribe" },
         { status: 500 }
       );
     }
