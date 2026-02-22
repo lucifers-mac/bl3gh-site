@@ -94,7 +94,7 @@ export const products: Product[] = [
     description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
     lore: "",
     colorways: [
-      { name: "Black", hex: "#111111", image: "/products/archive-placeholder.webp" },
+      { name: "Black", hex: "#111111", image: "/products/occult-ascension.webp" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
@@ -124,7 +124,7 @@ export const products: Product[] = [
     description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
     lore: "",
     colorways: [
-      { name: "Black", hex: "#111111", image: "/products/archive-placeholder.webp" },
+      { name: "Black", hex: "#111111", image: "/products/not-today-jesus.webp", modelImage: "/products/not-today-jesus-model.webp" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
@@ -139,7 +139,7 @@ export const products: Product[] = [
     description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
     lore: "",
     colorways: [
-      { name: "Black", hex: "#111111", image: "/products/archive-placeholder.webp" },
+      { name: "White", hex: "#f0f0f0", image: "/products/sandpit-turtle.webp", modelImage: "/products/sandpit-turtle-model.webp" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
@@ -154,7 +154,7 @@ export const products: Product[] = [
     description: "Printed in-house at BL3GH.CO. Heavyweight fleece. Limited run. Free US shipping.",
     lore: "",
     colorways: [
-      { name: "Black", hex: "#111111", image: "/products/archive-placeholder.webp" },
+      { name: "White", hex: "#f0f0f0", image: "/products/hardcore-maxx.webp", modelImage: "/products/hardcore-maxx-model.webp" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
