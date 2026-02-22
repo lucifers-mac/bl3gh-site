@@ -70,7 +70,7 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
                       : "bg-black/50 text-[#707070] backdrop-blur-sm hover:text-white"
                   }`}
                 >
-                  Product
+                  {product.imageLabel || "Product"}
                 </button>
                 <button
                   onClick={() => setShowModel(true)}
@@ -80,7 +80,7 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
                       : "bg-black/50 text-[#707070] backdrop-blur-sm hover:text-white"
                   }`}
                 >
-                  On Model
+                  {product.altImageLabel || "On Model"}
                 </button>
               </div>
             )}

@@ -11,6 +11,8 @@ export interface Product {
   sizes: string[];
   limited: boolean;
   inStock: boolean;
+  imageLabel?: string;
+  altImageLabel?: string;
 }
 
 export const products: Product[] = [
@@ -159,6 +161,8 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
     inStock: true,
+    imageLabel: "Front",
+    altImageLabel: "Back",
   },
 ];
 
