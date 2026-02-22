@@ -59,8 +59,52 @@ export async function POST(req: NextRequest) {
         }
       }
 
-      // TODO: Create Notion task for fulfillment
+        // Create Notion fulfillment task
+      try {
+        const notionKey = process.env.NOTION_API_KEY;
+        const notionTasksDb = "825f9b44-ab3b-4024-a024-79295cfe984e";
+        if (notionKey) {
+          const itemSummary = items.map((i: any) => `${i.name} (${i.colorway}, ${i.size}) x${i.quantity}`).join(", ");
+          await fetch("https://api.notion.com/v1/pages", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${notionKey}`,
+              "Notion-Version": "2022-06-28",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              parent: { database_id: notionTasksDb },
+              properties: {
+                Name: { title: [{ text: { content: `FULFILL: ${itemSummary}` } }] },
+                Status: { select: { name: "To Do" } },
+                Priority: { select: { name: "High" } },
+              },
+            }),
+          });
+          console.log("Notion fulfillment task created");
+        }
+      } catch (e) {
+        console.error("Notion fulfillment task failed:", e);
+      }
 
+      break;
+    }
+
+    case "payment_intent.payment_failed": {
+      const intent = event.data.object as Stripe.PaymentIntent;
+      console.error("Payment failed:", intent.id, intent.last_payment_error?.message);
+      break;
+    }
+
+    case "charge.refunded": {
+      const charge = event.data.object as Stripe.Charge;
+      console.log("Refund issued for charge:", charge.id, "amount:", charge.amount_refunded);
+      break;
+    }
+
+    case "charge.dispute.created": {
+      const dispute = event.data.object as Stripe.Dispute;
+      console.error("DISPUTE CREATED — charge:", dispute.charge, "amount:", dispute.amount, "reason:", dispute.reason);
       break;
     }
 

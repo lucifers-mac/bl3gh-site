@@ -30,9 +30,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 
-    // Subscribe profile to the list
+    // Subscribe profile to the list using bulk-create-jobs endpoint
     const res = await fetch(
-      `${KLAVIYO_API_URL}/lists/${listId}/relationships/profiles/`,
+      `${KLAVIYO_API_URL}/profile-subscription-bulk-create-jobs/`,
       {
         method: "POST",
         headers: {
@@ -41,24 +41,41 @@ export async function POST(req: NextRequest) {
           revision: KLAVIYO_REVISION,
         },
         body: JSON.stringify({
-          data: [
-            {
-              type: "profile",
-              attributes: {
-                email,
-                properties: {
-                  source: source || "bl3gh.co",
-                  segment: segment || "drops",
-                  signed_up_at: new Date().toISOString(),
-                },
+          data: {
+            type: "profile-subscription-bulk-create-job",
+            attributes: {
+              profiles: {
+                data: [
+                  {
+                    type: "profile",
+                    attributes: {
+                      email,
+                      properties: {
+                        source: source || "bl3gh.co",
+                        segment: segment || "drops",
+                        signed_up_at: new Date().toISOString(),
+                      },
+                      subscriptions: {
+                        email: {
+                          marketing: { consent: "SUBSCRIBED" },
+                        },
+                      },
+                    },
+                  },
+                ],
               },
             },
-          ],
+            relationships: {
+              list: {
+                data: { type: "list", id: listId },
+              },
+            },
+          },
         }),
       }
     );
 
-    if (!res.ok && res.status !== 409) {
+    if (!res.ok) {
       const err = await res.text();
       console.error("Klaviyo error:", err);
       return NextResponse.json(
