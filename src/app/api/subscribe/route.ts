@@ -50,11 +50,6 @@ export async function POST(req: NextRequest) {
                     type: "profile",
                     attributes: {
                       email,
-                      properties: {
-                        source: source || "bl3gh.co",
-                        segment: segment || "drops",
-                        signed_up_at: new Date().toISOString(),
-                      },
                       subscriptions: {
                         email: {
                           marketing: { consent: "SUBSCRIBED" },
