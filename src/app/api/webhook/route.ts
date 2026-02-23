@@ -24,6 +24,76 @@ export async function POST(req: NextRequest) {
   }
 
   switch (event.type) {
+    case "checkout.session.created": {
+      const session = event.data.object as Stripe.Checkout.Session;
+      const email = session.customer_details?.email;
+
+      // Track checkout started for abandonment flow
+      if (email) {
+        let items: any[] = [];
+        try {
+          items = JSON.parse(session.metadata?.items || "[]");
+        } catch (e) {
+          console.error("Failed to parse items metadata");
+        }
+
+        try {
+          await trackEvent({
+            email,
+            eventName: "Started Checkout",
+            properties: {
+              checkout_id: session.id,
+              checkout_url: session.url,
+              items,
+              item_names: items.map((i: any) => i.name).join(", "),
+              item_count: items.reduce((sum: number, i: any) => sum + (i.quantity || 1), 0),
+            },
+            value: (session.amount_total || 0) / 100,
+          });
+          console.log("Klaviyo checkout started tracked:", email);
+        } catch (e) {
+          console.error("Klaviyo tracking failed:", e);
+        }
+      }
+      break;
+    }
+
+    case "checkout.session.expired": {
+      const session = event.data.object as Stripe.Checkout.Session;
+      const email = session.customer_details?.email;
+
+      console.log("Checkout abandoned:", session.id);
+
+      // Track abandoned checkout in Klaviyo
+      if (email) {
+        let items: any[] = [];
+        try {
+          items = JSON.parse(session.metadata?.items || "[]");
+        } catch (e) {
+          console.error("Failed to parse items metadata");
+        }
+
+        try {
+          await trackEvent({
+            email,
+            eventName: "Abandoned Checkout",
+            properties: {
+              checkout_id: session.id,
+              checkout_url: session.url,
+              items,
+              item_names: items.map((i: any) => i.name).join(", "),
+              item_count: items.reduce((sum: number, i: any) => sum + (i.quantity || 1), 0),
+            },
+            value: (session.amount_total || 0) / 100,
+          });
+          console.log("Klaviyo abandoned checkout tracked:", email);
+        } catch (e) {
+          console.error("Klaviyo tracking failed:", e);
+        }
+      }
+      break;
+    }
+
     case "checkout.session.completed": {
       const session = event.data.object as Stripe.Checkout.Session;
       const email = session.customer_details?.email;
