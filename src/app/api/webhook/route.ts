@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Webhook error" }, { status: 400 });
   }
 
-  switch (event.type) {
+  switch (event.type as string) {
     case "checkout.session.created": {
       const session = event.data.object as Stripe.Checkout.Session;
       const email = session.customer_details?.email;
