@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import { trackEvent } from "@/lib/klaviyo";
+import { sendOrderConfirmation } from "@/lib/email";
 import Stripe from "stripe";
 
 export const dynamic = "force-dynamic";
@@ -75,7 +76,7 @@ export async function POST(req: NextRequest) {
         console.error("Failed to parse items metadata");
       }
 
-      // Track order in Klaviyo
+      // Track order in Klaviyo + send confirmation email
       if (email) {
         try {
           await trackEvent({
@@ -92,6 +93,29 @@ export async function POST(req: NextRequest) {
           console.log("Klaviyo event tracked for:", email);
         } catch (e) {
           console.error("Klaviyo tracking failed:", e);
+        }
+
+        // Send order confirmation email
+        try {
+          const shipping = session.shipping_details?.address;
+          await sendOrderConfirmation({
+            email,
+            name: session.customer_details?.name || "",
+            orderId: session.id,
+            items,
+            amountTotal: session.amount_total || 0,
+            shippingAddress: shipping ? {
+              line1: shipping.line1 || undefined,
+              line2: shipping.line2 || undefined,
+              city: shipping.city || undefined,
+              state: shipping.state || undefined,
+              postal_code: shipping.postal_code || undefined,
+              country: shipping.country || undefined,
+            } : undefined,
+          });
+          console.log("Order confirmation sent to:", email);
+        } catch (e) {
+          console.error("Order confirmation email failed:", e);
         }
       }
 
