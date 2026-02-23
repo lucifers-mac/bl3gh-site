@@ -30,10 +30,9 @@ export async function createCheckoutSession(items: CheckoutItem[]) {
           : {}),
       },
       unit_amount: Math.round(item.price * 100),
-      tax_behavior: "exclusive", // Tax calculated on top of price
+      tax_behavior: "exclusive" as const, // Tax calculated on top of price
     },
     quantity: item.quantity,
-    tax_rates: [], // Stripe Tax handles this automatically
   }));
 
   const stripe = getStripe();
