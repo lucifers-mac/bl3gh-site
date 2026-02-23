@@ -30,8 +30,10 @@ export async function createCheckoutSession(items: CheckoutItem[]) {
           : {}),
       },
       unit_amount: Math.round(item.price * 100),
+      tax_behavior: "exclusive", // Tax calculated on top of price
     },
     quantity: item.quantity,
+    tax_rates: [], // Stripe Tax handles this automatically
   }));
 
   const stripe = getStripe();
@@ -41,6 +43,9 @@ export async function createCheckoutSession(items: CheckoutItem[]) {
     redirect_on_completion: "never",
     line_items: lineItems,
     mode: "payment",
+    automatic_tax: {
+      enabled: true, // Stripe Tax calculates sales tax automatically
+    },
     shipping_address_collection: {
       allowed_countries: [
         "US", "CA", "GB", "AU", "DE", "FR", "IT", "ES", "NL", "SE", "NO", "DK",
