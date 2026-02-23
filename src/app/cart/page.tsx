@@ -96,6 +96,8 @@ export default function CartPage() {
                     alt={item.name}
                     fill
                     className="object-contain"
+                    sizes="96px"
+                    priority
                   />
                 )}
               </div>
