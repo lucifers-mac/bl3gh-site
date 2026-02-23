@@ -54,6 +54,12 @@ export function Footer() {
               <a href="https://instagram.com/bl3gh.co" target="_blank" rel="noopener" className="block text-sm text-[#b0b0b0] hover:text-[#f0f0f0] transition-colors">
                 Instagram
               </a>
+              <a href="https://x.com/bl3gh_co" target="_blank" rel="noopener" className="block text-sm text-[#b0b0b0] hover:text-[#f0f0f0] transition-colors">
+                X
+              </a>
+              <a href="https://threads.net/@bl3gh.co" target="_blank" rel="noopener" className="block text-sm text-[#b0b0b0] hover:text-[#f0f0f0] transition-colors">
+                Threads
+              </a>
               <a href="https://tiktok.com/@bl3gh.co" target="_blank" rel="noopener" className="block text-sm text-[#b0b0b0] hover:text-[#f0f0f0] transition-colors">
                 TikTok
               </a>
