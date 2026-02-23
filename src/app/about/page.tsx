@@ -27,7 +27,7 @@ export default function AboutPage() {
 
           <p>
             Every piece is designed, printed, and shipped from our own production floor. 
-            CO2 laser engraving. DTG and screen printing. 3D manufacturing. 
+            CO2 laser engraving. Heat press production. 3D manufacturing. 
             No middlemen. No print-on-demand. No dropshipping.
           </p>
 

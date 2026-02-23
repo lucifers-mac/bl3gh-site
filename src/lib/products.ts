@@ -24,7 +24,7 @@ export const products: Product[] = [
     collection: "the-four-judgments",
     chapter: "I",
     price: 43,
-    description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run — not restocked. Free US shipping.",
+    description: "Produced in-house at BL3GH.CO. Heavyweight cotton. Limited run — not restocked. Free US shipping.",
     lore: "He does not preach. He sees what others refuse to. He carries foresight as burden, not authority. The Prophet announces inevitability — he does not initiate judgment, he confirms it was always coming.",
     colorways: [
       { name: "White", hex: "#f0f0f0", image: "/products/prophet-white.webp", modelImage: "/products/prophet-white-model.webp" },
@@ -41,7 +41,7 @@ export const products: Product[] = [
     collection: "the-four-judgments",
     chapter: "II",
     price: 43,
-    description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run — not restocked. Free US shipping.",
+    description: "Produced in-house at BL3GH.CO. Heavyweight cotton. Limited run — not restocked. Free US shipping.",
     lore: "He is not rage. He is inevitability. The moment talk ends and outcome begins. This piece anchors the capsule in certainty.",
     colorways: [
       { name: "White", hex: "#f0f0f0", image: "/products/executioner-white.webp", modelImage: "/products/executioner-white-model.webp" },
@@ -58,7 +58,7 @@ export const products: Product[] = [
     collection: "the-four-judgments",
     chapter: "III",
     price: 43,
-    description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run — not restocked. Free US shipping.",
+    description: "Produced in-house at BL3GH.CO. Heavyweight cotton. Limited run — not restocked. Free US shipping.",
     lore: "He refuses imposed truth. He dismantles belief systems and exposes hypocrisy. Where the Prophet warns and the Executioner enforces, the Heretic destabilizes.",
     colorways: [
       { name: "White", hex: "#f0f0f0", image: "/products/heretic-white.webp", modelImage: "/products/heretic-white-model.webp" },
@@ -75,7 +75,7 @@ export const products: Product[] = [
     collection: "the-four-judgments",
     chapter: "IV",
     price: 43,
-    description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run — not restocked. Free US shipping.",
+    description: "Produced in-house at BL3GH.CO. Heavyweight cotton. Limited run — not restocked. Free US shipping.",
     lore: "He judges last. He does not act. He records. He is silent presence, unblinking and enduring. Nothing dramatic — because everything has already happened. The Witness completes the cycle.",
     colorways: [
       { name: "White", hex: "#f0f0f0", image: "/products/witness-white.webp", modelImage: "/products/witness-white-model.webp" },
@@ -93,7 +93,7 @@ export const products: Product[] = [
     subtitle: "Archive Release",
     collection: "archive",
     price: 43,
-    description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
+    description: "Produced in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
     lore: "",
     colorways: [
       { name: "Black", hex: "#111111", image: "/products/occult-ascension.webp" },
@@ -108,7 +108,7 @@ export const products: Product[] = [
     subtitle: "Archive Release",
     collection: "archive",
     price: 43,
-    description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
+    description: "Produced in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
     lore: "",
     colorways: [
       { name: "Black", hex: "#111111", image: "/products/archive-placeholder.webp" },
@@ -123,7 +123,7 @@ export const products: Product[] = [
     subtitle: "Archive Release",
     collection: "archive",
     price: 43,
-    description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
+    description: "Produced in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
     lore: "",
     colorways: [
       { name: "Black", hex: "#111111", image: "/products/not-today-jesus.webp", modelImage: "/products/not-today-jesus-model.webp" },
@@ -138,7 +138,7 @@ export const products: Product[] = [
     subtitle: "Archive Release",
     collection: "archive",
     price: 43,
-    description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
+    description: "Produced in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
     lore: "",
     colorways: [
       { name: "White", hex: "#f0f0f0", image: "/products/sandpit-turtle.webp", modelImage: "/products/sandpit-turtle-model.webp" },
@@ -153,7 +153,7 @@ export const products: Product[] = [
     subtitle: "Archive Release",
     collection: "archive",
     price: 70,
-    description: "Printed in-house at BL3GH.CO. Heavyweight fleece. Limited run. Free US shipping.",
+    description: "Produced in-house at BL3GH.CO. Heavyweight fleece. Limited run. Free US shipping.",
     lore: "",
     colorways: [
       { name: "White", hex: "#f0f0f0", image: "/products/hardcore-maxx.webp", modelImage: "/products/hardcore-maxx-model.webp" },
