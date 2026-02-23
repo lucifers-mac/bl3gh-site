@@ -45,7 +45,11 @@ export async function createCheckoutSession(items: CheckoutItem[]) {
     mode: "payment",
     automatic_tax: {
       enabled: true, // Stripe Tax calculates sales tax automatically
+      liability: {
+        type: "self", // You handle tax filing
+      },
     },
+    billing_address_collection: "required", // Required for tax calculation
     shipping_address_collection: {
       allowed_countries: [
         "US", "CA", "GB", "AU", "DE", "FR", "IT", "ES", "NL", "SE", "NO", "DK",

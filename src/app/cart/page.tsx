@@ -171,6 +171,10 @@ export default function CartPage() {
             <span>Shipping</span>
             <span className="text-green-500">FREE (US)</span>
           </div>
+          <div className="flex justify-between text-[#707070] text-sm">
+            <span>Tax</span>
+            <span>Calculated at checkout</span>
+          </div>
           <div className="flex justify-between text-[#f0f0f0] font-medium text-lg pt-3 border-t border-[#1a1a1a]">
             <span>Total</span>
             <span>${total.toFixed(2)}</span>
