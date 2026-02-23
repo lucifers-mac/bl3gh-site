@@ -191,7 +191,7 @@ export function ProductPage({ product, siblings }: ProductPageProps) {
             <ul className="space-y-2 text-sm text-[#b0b0b0]">
               <li className="flex items-center gap-2">
                 <span className="text-[#707070]">·</span>
-                Printed in-house at BL3GH.CO
+                Produced in-house at BL3GH.CO
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-[#707070]">·</span>

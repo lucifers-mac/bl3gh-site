@@ -79,16 +79,9 @@ export function JudgmentCard({ product, index }: JudgmentCardProps) {
             </div>
 
             {/* Sizes */}
-            <div className="flex items-center gap-2 mb-8">
-              {product.sizes.map((size) => (
-                <div
-                  key={size}
-                  className="w-10 h-10 border border-[#1a1a1a] rounded flex items-center justify-center text-xs text-[#b0b0b0] hover:border-[#333] cursor-pointer transition-colors"
-                >
-                  {size}
-                </div>
-              ))}
-            </div>
+            <p className="text-xs text-[#707070] tracking-wider mb-8">
+              Available in {product.sizes[0]}–{product.sizes[product.sizes.length - 1]}
+            </p>
 
             {/* CTA */}
             <Link
