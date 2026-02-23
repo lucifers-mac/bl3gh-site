@@ -17,8 +17,6 @@ export async function createCheckoutSession(items: CheckoutItem[]) {
     throw new Error("Cart is empty");
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bl3gh.co";
-
   const lineItems = items.map((item) => ({
     price_data: {
       currency: "usd",
@@ -26,9 +24,6 @@ export async function createCheckoutSession(items: CheckoutItem[]) {
         name: `${item.name} — ${item.colorway}`,
         description: `Size: ${item.size}`,
         tax_code: "txcd_99999999", // General - Tangible Goods
-        ...(item.image
-          ? { images: [`${siteUrl}${item.image}`] }
-          : {}),
       },
       unit_amount: Math.round(item.price * 100),
       tax_behavior: "exclusive" as const, // Tax calculated on top of price
