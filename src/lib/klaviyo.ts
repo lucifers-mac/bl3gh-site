@@ -15,37 +15,6 @@ function getHeaders() {
 }
 
 /**
- * Subscribe a profile to a Klaviyo list
- */
-export async function subscribeToList(email: string, listId: string) {
-  const res = await fetch(`${KLAVIYO_API_URL}/lists/${listId}/relationships/profiles/`, {
-    method: "POST",
-    headers: getHeaders(),
-    body: JSON.stringify({
-      data: [
-        {
-          type: "profile",
-          attributes: {
-            email,
-            properties: {
-              source: "bl3gh.co",
-            },
-          },
-        },
-      ],
-    }),
-  });
-
-  if (!res.ok) {
-    const err = await res.text();
-    console.error("Klaviyo subscribe error:", err);
-    throw new Error("Failed to subscribe");
-  }
-
-  return true;
-}
-
-/**
  * Create or update a profile in Klaviyo
  */
 export async function upsertProfile(data: {
