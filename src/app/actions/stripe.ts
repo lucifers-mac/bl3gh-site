@@ -25,7 +25,7 @@ export async function createCheckoutSession(items: CheckoutItem[]) {
       product_data: {
         name: `${item.name} — ${item.colorway}`,
         description: `Size: ${item.size}`,
-        tax_code: "txcd_20030000", // Apparel - general
+        tax_code: "txcd_99999999", // General - Tangible Goods
         ...(item.image
           ? { images: [`${siteUrl}${item.image}`] }
           : {}),
