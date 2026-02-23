@@ -25,7 +25,7 @@ export const products: Product[] = [
     chapter: "I",
     price: 43,
     description: "Printed in-house at BL3GH.CO. Heavyweight cotton. Limited run — not restocked. Free US shipping.",
-    lore: "He does not preach. He sees what others refuse to. He carries foresight as burden, not authority. The Prophet initiates the Judgment cycle.",
+    lore: "He does not preach. He sees what others refuse to. He carries foresight as burden, not authority. The Prophet announces inevitability — he does not initiate judgment, he confirms it was always coming.",
     colorways: [
       { name: "White", hex: "#f0f0f0", image: "/products/prophet-white.webp", modelImage: "/products/prophet-white-model.webp" },
       { name: "Black", hex: "#111111", image: "/products/prophet-black.webp", modelImage: "/products/prophet-black-model.webp" },
