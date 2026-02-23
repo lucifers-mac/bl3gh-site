@@ -46,6 +46,7 @@ export async function createCheckoutSession(items: CheckoutItem[]) {
     automatic_tax: {
       enabled: true,
     },
+    billing_address_collection: "required",
     shipping_address_collection: {
       allowed_countries: [
         "US", "CA", "GB", "AU", "DE", "FR", "IT", "ES", "NL", "SE", "NO", "DK",
