@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
 
         // Send order confirmation email
         try {
-          const shipping = session.shipping_details?.address;
+          const shipping = (session as any).shipping_details?.address;
           await sendOrderConfirmation({
             email,
             name: session.customer_details?.name || "",
