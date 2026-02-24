@@ -108,7 +108,7 @@ export const products: Product[] = [
     subtitle: "Archive Release",
     collection: "archive",
     price: 43,
-    description: "Produced in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
+    description: "Produced in-house at BL3GH.CO. Heavyweight cotton. Custom printed inside tag. BL3GH CO. back branding. Limited run. Free US shipping.",
     lore: "",
     colorways: [
       { name: "White", hex: "#f5f5f5", image: "/products/favorite-ex-deathcore.webp", modelImage: "/products/favorite-ex-deathcore-model.webp" },
@@ -142,6 +142,21 @@ export const products: Product[] = [
     lore: "",
     colorways: [
       { name: "White", hex: "#f0f0f0", image: "/products/sandpit-turtle.webp", modelImage: "/products/sandpit-turtle-model.webp" },
+    ],
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    limited: true,
+    inStock: true,
+  },
+  {
+    slug: "god-was-never-on-your-side",
+    name: "GOD WAS NEVER ON YOUR SIDE",
+    subtitle: "Archive Release",
+    collection: "archive",
+    price: 43,
+    description: "Produced in-house at BL3GH.CO. Heavyweight cotton. Custom printed inside tag. BL3GH CO. back branding. Limited run. Free US shipping.",
+    lore: "Heaven never claimed you. Now you wear the proof.",
+    colorways: [
+      { name: "White", hex: "#f5f5f5", image: "/products/god-was-never-on-your-side.webp", modelImage: "/products/god-was-never-on-your-side-model.webp" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
