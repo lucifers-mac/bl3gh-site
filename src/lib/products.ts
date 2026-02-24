@@ -163,6 +163,21 @@ export const products: Product[] = [
     inStock: true,
   },
   {
+    slug: "metalcore-vs-hardcore",
+    name: "Metalcore vs Hardcore",
+    subtitle: "Archive Release",
+    collection: "archive",
+    price: 43,
+    description: "Produced in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
+    lore: "The oldest argument in heavy music. Settled here. On a shirt.",
+    colorways: [
+      { name: "White", hex: "#f5f5f5", image: "/products/metalcore-vs-hardcore.webp", modelImage: "/products/metalcore-vs-hardcore-model.webp" },
+    ],
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    limited: true,
+    inStock: true,
+  },
+  {
     slug: "hardcore-maxx-hoodie",
     name: "Hardcore Maxx Hoodie",
     subtitle: "Archive Release",
