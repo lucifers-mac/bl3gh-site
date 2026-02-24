@@ -111,7 +111,7 @@ export const products: Product[] = [
     description: "Produced in-house at BL3GH.CO. Heavyweight cotton. Limited run. Free US shipping.",
     lore: "",
     colorways: [
-      { name: "White", hex: "#f5f5f5", image: "/products/favorite-ex-deathcore.webp" },
+      { name: "White", hex: "#f5f5f5", image: "/products/favorite-ex-deathcore.webp", modelImage: "/products/favorite-ex-deathcore-model.webp" },
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     limited: true,
